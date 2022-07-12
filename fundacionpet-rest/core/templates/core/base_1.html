@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> {% load static %}
+
+    <!-- BLOQUE PARA CONTENIDO CSS -->
+    {% block css%} {% endblock %}
+
+    <!-- CSS BASE-->
+    <link rel="stylesheet" href="{% static 'core/css/plugins.css' %}" />
+    <link rel="stylesheet" href="{% static 'core/css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    <!-- IMG LOGO PESTANA BASE-->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'core/image/favicon.ico' %}">
+
+    <title>Fundación Pet</title>
+</head>
+
+
+{% load humanize %}
+
+<body class=" petmark-theme-3">
+    <div class="site-wrapper">
+        <header class="header petmark-header-3">
+
+            <!--INICIO: Primera barra -->
+            <div class="header-top text-white bg-orange">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-10">
+                            <ul class="header-links no-border white-color justify-content-center justify-content-lg-start">
+                                {% if user.is_authenticated %}
+                                <li>
+                                    <a href="{% url 'order' %}"><i class="fas fa-car-alt"></i>  Rastrea tu Orden</a>
+                                </li>
+
+                                <li>
+                                    <a href="{% url 'mi_cuenta' %}"><i class="fas fa-user"></i>  Mi Cuenta</a>
+                                </li>
+                            <!--PERMISOS-->
+                                {% if request.user.is_staff %}
+                                <li>
+                                    <a href="{% url 'mi_cuenta_CRUD' %}"><i class="fas fa-user"></i>  ADMIN </a>
+                                </li>
+                                {% endif %}
+
+                                <li>
+                                    <a href="{% url 'logout' %}"><i class="fas fa-user"></i>  Cerrar sesión</a>
+                                </li>
+                                <li>
+                                    <a href="" class="font-weight-bold">   Bienvenid@: {{ user.username }}</a>
+                                </li>
+                                {% else %}
+                                <li class="mx-3">
+                                    <a href="{% url 'login' %}"><i class="fas fa-user"></i> Iniciar Sesión</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'registro_usuario' %}"><i class="fas fa-user"></i>  Registrarse</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--FIN Primera barra -->
+
+            <!--INICIO: Segunda barra -->
+            <div class="header-middle bg-primary">
+                <div class="header-nav-wrapper">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-3 col-lg-3 col-sm-4 order-lg-1 order-md-1">
+                                <div class="site-brand  text-center text-lg-left">
+                                    <a href="{% url 'index' %}" class="brand-{% static 'core/image/main-logo--green.png' %}"><img src="{% static 'core/image/main-logo--green.png' %}" alt=""></a>
+                                </div>
+                            </div>
+
+                            <!-- INICIO: Buscador -->
+                            <div class="col-xl-7 col-lg-6 col-md-12 order-lg-2 order-sm-3 mb-3">
+                                <form class="category-widget" method="GET" action="">
+                                    <input type="search" name="search" class="form-control" placeholder="Buscar productos">
+                                    <button type="submit" class="search-submit"><i class="fas fa-search"></i></button>
+                                </form>
+                            </div>
+                            <!-- FIN: Buscador -->
+
+                            <!-- BUSCADOR PROPIO -->
+                            <!-- <div class="col-xl-7 col-lg-6 col-md-12 order-lg-2 order-sm-3">
+                                <form class="category-widget"><input type="text" name="search" placeholder="Buscar productos">
+                                    <button class="search-submit"><i class="fas fa-search"></i></button>
+                                </form>
+                            </div>
+
+                            
+
+
+                            {% if user.is_authenticated %}
+                            <!-- {% if request.session.cart.items %} -->
+                            <!-- INICIO: Bloque de Carro de compras -->
+                            <div class="col-xl-2 col-lg-3 col-sm-8 order-lg-3 order-sm-2">
+                                <div class="cart-widget-wrapper slide-down-wrapper">
+                                    <div class="cart-widget border-0 white-color slide-down--btn">
+                                        <div class="cart-icon"><i class="ion-bag">
+                                        <!-- Indica el numero de articulos agregados al carro-->  
+                                        </i><span class="cart-count-badge"></span>
+                                        </div>
+                                        <!-- Indica el peso y el total en dinero del carro-->
+
+                                        <div class="cart-text">
+                                            <span class="d-block"><a href="{% url 'carro' %}">Ir al Carro</a></span>
+                                            <strong>
+                                                <span class="amount">
+                                                <span class="currencySymbol">$</span>{{total_carrito | intcomma}}</span>
+                                            </strong>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- {% for key, value in request.session.cart.items %}
+                                    <!--Muestra los item del carro
+                                    <div class="slide-down--item">
+                                        <div class="cart-widget-box">
+                                            <ul class="cart-items">
+                                                <li class="single-cart">
+
+                                                    <a href="#" class="cart-product">
+                                                        <div class="cart-product-img"><img src="{{value.imagen}}" alt="Selected Products"></div>
+                                                        <div class="product-details">
+                                                            <h4 class="product-details--title">{{value.nombre}}</h4>
+                                                            <span class="product-details--price">{{value.cantidad | intcomma }} x ${{value.precio_oferta | intcomma }}</span>
+                                                        </div><span class="cart-cross">x</span></a>
+
+                                                </li>
+                                                <li class="single-cart">
+                                                    <div class="cart-product__subtotal"><span class="subtotal--title">Subtotal</span><span class="subtotal--price">${{p.precio | intcomma }}</span></div>
+                                                </li>
+                                                <li class="single-cart">
+                                                    <div class="cart-buttons"><a href="{% url 'carro' %}" class="btn btn-outlined">Ver Carro</a><a href="{% url 'checkout' %}" class="btn btn-outlined">Pagar</a></div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    {% endfor %} -->
+                                </div>
+                            </div>
+                            {% endif %}
+                            <!-- {% endif %} -->
+                            <!-- FIN: Bloque de Carro de compras -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--FIN: Segunda barra -->
+
+            <!--INICIO: TERCERA barra -->
+            <!-- <div class="header-bottom">
+                <div class="container">
+                    <div class="row align-items-center"> -->
+            <!-- INICIO: Main Menu -->
+            <!-- <div class="col-lg-8 col-xl-9 col-md-6 order-md-2 order-sm-1 order-2">
+                            <nav class="main-navigation"> -->
+            <!-- Comienza el Mainmenu -->
+            <!-- <ul class="mainmenu">
+                                    <li class="mainmenu__item"><a href="{% url 'index' %}" class="mainmenu__link">Home</a></li>
+                                    <li class="mainmenu__item"><a href="{% url 'nosotros' %}" class="mainmenu__link">Nosotros</a></li>
+                                    <li class="mainmenu__item"><a href="{% url 'galeria' %}" class="mainmenu__link">Galeria</a></li>
+                                    <li class="mainmenu__item"><a href="{% url 'blog' %}" class="mainmenu__link">Blog</a></li>
+                                    <li class="mainmenu__item"><a href="{% url 'tiendafor' %}" class="mainmenu__link">Tienda</a></li>
+                                </ul> -->
+            <!-- Mainmenu End -->
+            <!-- </nav>
+                        </div> -->
+            <!-- FIN: Main Menu -->
+
+            <!-- INICIO:  Call Widget -->
+            <!-- <div class="col-lg-4 col-xl-3 col-md-12 col-sm-7 order-sm-2 order-3">
+                            <div class="call-widget">
+                                <p>Llamanos ahora: <br class="d-sm-none"><i class="icon ion-ios-telephone"></i><span class="font-weight-mid">+569 1234 5478</span></p>
+                            </div>
+                        </div> -->
+            <!-- FIN: Call Widget -->
+
+            <!--  Mobile Menu -->
+            <!-- <div class="col-12 d-flex d-lg-none order-2 mobile-absolute-menu"> -->
+            <!-- Main Mobile Menu Start -->
+            <!-- <div class="mobile-menu"></div> -->
+            <!-- Main Mobile Menu End -->
+            <!-- </div> -->
+            <!-- </div>
+                </div>
+            </div> -->
+            <!--FIN: TERCERA barra -->
+        </header>
+    </div>
+
+    <!-- CONTENIDO PAGINAS -->
+    <div id="contenido">
+        {% block contenido %} {% endblock %}
+    </div>
+
+
+    <!--  Inicio del footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-6">
+                    <div class="single-footer contact-block">
+                        <h3 class="footer-title">FUNDACIÓN</h3>
+                        <div class="single-footer-content">
+                            <p class="text-italic">Nuestra institución es una fundación sin fines de lucro que partio en redes sociales para poder ayudar a muchos animales que quedan desprotegidos.</p>
+                            <p class="font-weight-500 text-white"><span class="d-block">Información Contacto:</span> Rojas Magallanes 5600, La Florida.</p>
+                            <p class="social-icons"><a href=""><i class="fab fa-facebook-f"></i></a><a href=""><i class="fab fa-twitter"></i></a><a href=""><i class="fab fa-instagram"></i></a><a href=""><i class="fab fa-linkedin-in"></i></a><a href=""><i class="fas fa-rss"></i></a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-footer contact-block">
+                        <h3 class="footer-title">¿Necesitas Ayuda?</h3>
+                        <div class="single-footer-content">
+                            <ul class="footer-list">
+                                <li><a href="{% url 'nosotros' %}">Nosotros</a></li>
+                                <li><a href="{% url 'contacto1' %}">Contáctanos</a></li>
+                                <li><a href="{% url 'error_404' %}">Mis ordenes</a></li>
+                                <li><a href="{% url 'error_404' %}">Terminos y condiciones</a></li>
+                                <li><a href="{% url 'error_404' %}">Envío y Entrega</a></li>
+                                <li><a href="{% url 'error_404' %}">Politicas de Privacidad</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-footer contact-block">
+                        <h3 class="footer-title">SUSCRÍBETE A NUESTRO BOLETÍN</h3>
+                        <div class="single-footer-content">
+                            <p> Suscríbase al correo de Petmark para recibir actualizaciones sobre novedades, ofertas especiales y otra información sobre descuentos.</p>
+                            <div class="pt-2">
+                                <div class="input-box-with-icon"><input type="text" placeholder="Ingresa tú correo"><button><i class="fas fa-envelope"></i></button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-block-2 text-center">
+                <p>METODOS DE PAGO ACEPTADOS</p>
+                <div class="payment-block pt-3"><img src="{% static 'core/image/icon-logo/payment-icons.png' %}" alt=""></div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>Copyright © 2022 <a href="http://www.google.com/" title="google">Aprendizaje Grupo 3</a>. All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- JS BASE -->
+    <script src="{% static 'core/js/plugins.js' %}"></script>
+    <script src="{% static 'core/js/ajax-mail.js' %}"></script>
+    <script src="{% static 'core/js/custom.js' %}"></script>
+
+    <!-- SweetAlert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Para Mostrar mensajes al hacer click -->
+    
+
+
+    {% if messages %}
+    {% for m in messages %}
+      {% if m.tags == "error" %}
+        <script>
+            Swal.fire({
+                "title": "Lo sentimos",
+                "text": "{{ m }}",
+                "icon": "error"
+            })
+        </script>
+      {% else %}
+        <script>
+            Swal.fire({
+                "title": "Felicitaciones",
+                "text": "{{ m }}",
+                "icon": "success"
+            })
+        </script>
+      {% endif %}
+    {% endfor %}
+    {% endif %}
+
+
+
+    <!-- BLOQUE PARA CONTENIDO JS -->
+    {% block js%} {% endblock %}
+
+</body>
+
+</html>

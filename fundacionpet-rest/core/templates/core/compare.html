@@ -1,0 +1,125 @@
+<!-- BLOQUE PADRE -->
+{% extends 'core/base_1.html' %}
+
+<!-- BLOQUE CARGA STATIC -->
+{% load static %}
+
+<!-- BLOQUE PARA CONTENIDO css -->
+{% block css%} {% endblock %}
+
+<!-- BLOQUE PARA CONTENIDO JS -->
+{% block js%} {% endblock %} {% block contenido %}
+<nav aria-label="breadcrumb" class="breadcrumb-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb justify-content-center  h3 py-3">
+                    <!-- <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li> -->
+                    <li class="breadcrumb-item active" aria-current="page">COMPARADOR PRODUCTOS</li>
+                </ol>
+            </div>
+            <div class="col-sm-4">
+                <ol class="breadcrumb justify-content-center">
+                        <div><a href="{% url 'carro' %}" class="btn colorNaranja text-light">Ir al Carro</a></div>
+                </ol>
+            </div>
+            <div class="col-sm-4">
+                <ol class="breadcrumb justify-content-center">
+                        <div><a href="{% url 'wishlist' %}" class="btn colorVerde text-light">Ir a Lista Deseos</a></div>
+                </ol>
+            </div>
+            <div class="col-sm-4">
+                <ol class="breadcrumb justify-content-center">
+                        <div><a href="{% url 'tiendafor' %}" class="btn colorNaranja text-light">Ir a la Tienda</a></div>
+                </ol>
+            </div>
+        </div>      
+    </div>
+</nav>
+
+{% load humanize %}
+<!-- Compare Page Start -->
+<div class="compare_area sp-inner-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+
+                <form action="./">
+                    <!-- Cart Table -->
+                    <div class="cart-table table-responsive">
+                        <div class=" text-black text-center">
+                            <h1>Comparador de Productos</h1>
+                        </div>
+                        <hr>
+
+                        <table class=" table">
+                            <thead>
+                                <tr>
+                                    <th class="pro-thumbnail">Imagen</th>
+                                    <th class="pro-title">Producto</th>
+                                    <th class="">Descripción</th>
+                                    <th class="pro-subtotal">Precio</th>
+                                    <th class="pro-subtotal">Precio Oferta</th>
+                                    <th class="pro-quantity">Stock</th>
+                                    <th class="pro-remove">Agregar</th>
+                                    <th class="pro-remove">Remover</th>
+
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+                                {% if request.session.compare.items %}
+                                <!--Primero un IF - Luego un FOR para recorrer el carro de compras-->
+                                {% for key, value in request.session.compare.items %}
+                                
+
+                                <tr>
+
+                                    <td class="pro-thumbnail">
+                                        <a href="#"><img src="{{value.imagen}}" alt="Product"></a>
+                                    </td>
+                                    <td class="pro-title"><a href="#">{{value.nombre | capfirst}}</a></td>
+                                    <td class="">{{value.descripcion}}</a>
+                                    </td>
+                                    <td class=" pro-price"><span>${{value.precio | intcomma }}</span></td>
+                                    <td class="pro-price"><span>${{value.precio_oferta | intcomma }}</span></td>
+                                    <td class="pro-price"><span>{{value.stock | intcomma }}</span></td>
+
+                                    <td class="pro-addtocart"><a href="{% url 'Add' value.producto_id %}" class="btn btn-rounded btn-outlined--primary"><i class="fas fa-shopping-cart"></i><span>AGREGAR</span></a></td>
+                                    <td class="pro-remove"><a href="{% url 'eliminarC' value.producto_id %}"><i class="far fa-trash-alt"></i></a></td>
+                                </tr>
+                                
+                                {% endfor %} {% else %}
+                                <tr>
+                                    <td colspan="12">
+                                        <div class="alert alert-danger text-center"> No hay productos en su Comparador </div>
+                                    </td>
+                                </tr>
+                                
+                                {% endif %}
+                            </tbody>
+
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-12 d-flex text-center justify-content-center">
+                    <a href="{% url 'limpiarC' %}" class="btn btn-danger">LIMPIAR</a>
+                </div>
+                <div class="col-sm-6 col-12 d-flex text-center justify-content-center">
+                    <a href="{% url 'tiendafor' %}" class="btn btn-success">Volver a tienda</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<!-- Compare Page End -->
+
+
+{% endblock %}

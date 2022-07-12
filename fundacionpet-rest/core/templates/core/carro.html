@@ -1,0 +1,154 @@
+{% extends 'core/base_1.html' %}
+
+<!-- BLOQUE CARGA STATIC -->
+{% load static %}
+
+<!-- BLOQUE PARA CONTENIDO css -->
+{% block css%} {% endblock %}
+
+<!-- BLOQUE PARA CONTENIDO JS -->
+{% block js%} {% endblock %} {% block contenido %}
+<nav aria-label="breadcrumb" class="breadcrumb-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb justify-content-center  h3 py-3">
+                    <!-- <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li> -->
+                    <li class="breadcrumb-item active" aria-current="page">CARRO DE COMPRAS</li>
+                </ol>
+            </div>
+            <div class="col-sm-4">
+                <ol class="breadcrumb justify-content-center">
+                        <div><a href="{% url 'tiendafor' %}" class="btn colorNaranja text-light">Ir a la Tienda</a></div>
+                </ol>
+            </div>
+            <div class="col-sm-4">
+                <ol class="breadcrumb justify-content-center">
+                        <div><a href="{% url 'wishlist' %}" class="btn colorVerde text-light">Ir a Lista Deseos</a></div>
+                </ol>
+            </div>
+            <div class="col-sm-4">
+                <ol class="breadcrumb justify-content-center">
+                        <div><a href="{% url 'compare' %}" class="btn colorNaranja text-light">Ir al Comparador</a></div>
+                </ol>
+            </div>
+        </div>      
+    </div>
+</nav>
+
+{% load humanize %}
+
+<!-- Cart Page Start -->
+<div class="cart_area cart-area-padding sp-inner-page--top">
+    <div class="container">
+        <div class="page-section-title">
+            <h1>CARRO DE COMPRAS</h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <form action="#" class="">
+                    <!-- Cart Table -->
+                    <div class="cart-table table-responsive mb--40">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="pro-remove"></th>
+                                    <th class="pro-thumbnail">Imagen</th>
+                                    <th class="pro-title">Producto</th>
+                                    <th class="pro-price">Precio Uni.</th>
+                                    <th class="pro-quantity">Cantidad</th>
+                                    <th class="pro-quantity"></th>
+                                    <th class="pro-subtotal">Total</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% if request.session.cart.items %}
+                                <!--Primero un IF - Luego un FOR para recorrer el carro de compras-->
+                                {% for key, value in request.session.cart.items %}
+                                <!-- Product Row -->
+                                <tr>
+                                    <td class="pro-remove">
+                                        <a href="{% url 'Del' value.producto_id %}">
+                                            <i class="far fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                    <td class="pro-thumbnail">
+                                        <a href="#"><img src="{{value.imagen}}" alt="Product"></a>
+                                    </td>
+                                    <td class="pro-title">
+                                        <a href="#">{{value.nombre | capfirst}}</a>
+                                    </td>
+                                    <td class="pro-price">
+                                        <span>${{value.precio_oferta | intcomma }}</span>
+                                    </td>
+                                    <td class="pro-quantity">
+                                        <div class="pro-qty">
+                                            <div class="count-input-block">{{value.cantidad}}</div>
+                                        </div>
+                                    </td>
+                                    <td class="pro-quantity">
+                                        <div class="pro-qty">
+                                            <div class="count-input-block">
+                                                <a href="{% url 'agregaCarro' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a>
+                                                <br>
+                                                <a href="{% url 'Sub' value.producto_id %}" class="badge btn btn-dark badge-dark">-</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="pro-subtotal">
+                                        <span>${{value.acumulado | intcomma}}</span>
+                                    </td>
+                                </tr>
+                                {% endfor %} {% else %}
+                                <tr>
+                                    <td colspan="12">
+                                        <div class="alert alert-danger text-center"> No hay productos en su Carro </div>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="cart-section-2 sp-inner-page--bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-12 mb--15">
+                <div class="cart-block-title"></div>
+            </div>
+            <!-- Cart Summary -->
+            <div class="col-lg-6 col-12 d-flex">
+                <div class="cart-summary">
+                    <div class="cart-summary-wrap">
+                        <h4><span>Resumen de Compra</span></h4>
+                        <p>Sub Total <span class="text-primary">${{total_carrito | intcomma}}</span></p>
+                        <p>Costo de envio <span class="text-primary">$0</span></p>
+                        <h2>Total <span class="text-primary">${{total_carrito | intcomma}}</span></h2>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6 col-12 d-flex text-center justify-content-center">
+                                <a href="{% url 'CLS' %}" class="btn btn-danger">VACIAR CARRO</a>
+                            </div>
+                            <div class="col-sm-6 col-12 d-flex text-center justify-content-center">
+                                <a href="#" class="btn btn-success">IR A PAGAR</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Cart Page End -->
+
+
+
+
+{% endblock %}
