@@ -1,0 +1,171 @@
+<!-- BLOQUE PADRE -->
+{% extends 'core/base_1.html' %}
+
+<!-- BLOQUE CARGA STATIC -->
+{% load static %}
+
+<!-- BLOQUE PARA CONTENIDO css -->
+{% block css%} {% endblock %}
+
+<!-- BLOQUE PARA CONTENIDO JS -->
+{% block js%} {% endblock %}
+<!-- BLOQUE PARA CONTENIDO JS -->
+
+{% block contenido %}
+<!--INICIO: TERCERA barra -->
+<nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-light p-3" id="ftco-navbar">
+    <div class="container mt-2 align-content-center">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa fa-bars"></span> Menu
+        </button>
+
+        <form action="#" class="searchform order-lg-last mt-3">
+            <div class="form-group d-flex">
+                <!-- <input type="text" class="form-control pl-3" placeholder="Search">
+                <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button> -->
+                <p class="mb-1">Llamanos ahora: <br><i class="icon ion-ios-telephone colorNaranja py-1 px-2 mx-2 text-light" width="25px"></i><span class="font-weight-mid pt-1">+569 1234 5478</span></p>
+            </div>
+        </form>
+
+        <div class="collapse navbar-collapse h5" id="ftco-nav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item mx-2"><a href="{% url 'index' %}" class="nav-link text-dark">Home</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'nosotros' %}" class="nav-link text-dark">Nosotros</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'galeria' %}" class="nav-link text-dark">Galeria</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'adopcion_mascota' %}" class="nav-link text-dark">Adopción</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'tiendafor' %}" class="nav-link text-dark">Tienda</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'contacto1' %}" class="nav-link text-dark">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--FIN: TERCERA barra -->
+
+<!-- INICIO: Banner -->
+<nav aria-label="breadcrumb" class="breadcrumb-wrapper">
+    <div class="container">
+        <ol class="breadcrumb justify-content-center h3">
+            <!-- <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li> -->
+            <li class="breadcrumb-item active" aria-current="page">NOSOTROS</li>
+        </ol>
+    </div>
+</nav>
+<!-- FIN: Banner -->
+
+<!-- Main Wrapper Start -->
+<main id="content" class="main-content-wrapper overflow-hidden mt-5">
+        <div class="about-area">
+            <div class="container-fluid p-0">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-lg-6">
+                        <div class="img-box text-center"><img src="{% static 'core/image/others/about-us-sec-1.jpg' %}" alt="about"></div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-10 offset-1">
+                                <div class="about-text text-center">
+                                    <h2 class="heading-secondary"><strong>NUESTRA FUNDACIÓN AYUDA</strong></h2>
+                                    <p class="mb--40 mb-sm--30">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
+                                        delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta.</p>
+                                    
+                                    <div class="map">
+                                        <div class="map-iframe text-center">
+                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2489.2687449301775!2d-70.58235825754302!3d-33.61113921461324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662d713c9048abd%3A0x15841ec1844619ea!2sHospital%20Veterinario%20Fundaci%C3%B3n%20Comprometidos!5e0!3m2!1ses!2scl!4v1657563810918!5m2!1ses!2scl" width="500" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fact-area">
+            <div class="container-fluid p-0">
+                <div class="row no-gutters">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="fact">
+                            <div class="fact__icon"><img src="{% static 'core/image/icon-logo/about-us-icon1.png' %}" alt="about icon"></div>
+                            <div class="fact__content">
+                                <h3><span class="counter">1700</span></h3>
+                                <p>ANIMALES AYUDADOS</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="fact">
+                            <div class="fact__icon"><img src="{% static 'core/image/icon-logo/about-us-icon2.png' %}" alt="about icon"></div>
+                            <div class="fact__content">
+                                <h3><span class="counter">480</span></h3>
+                                <p>DONACIONES RECIBIDAS</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="fact">
+                            <div class="fact__icon"><img src="{% static 'core/image/icon-logo/about-us-icon3.png' %}" alt="about icon"></div>
+                            <div class="fact__content">
+                                <h3><span class="counter">689</span></h3>
+                                <p>HORAS DE TRABAJO</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="fact">
+                            <div class="fact__icon"><img src="{% static 'core/image/icon-logo/about-us-icon4.png' %}" alt="about icon"></div>
+                            <div class="fact__content">
+                                <h3><span class="counter">1630</span></h3>
+                                <p>ANIMALES RESCATADOS</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="skill-area bg--white">
+            <div class="container-fluid p-0">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-xl-6">
+                        <div class="row">
+                            <div class="col-sm-9 offset-sm-2 col-10 offset-1">
+                                <div class="skill-progress">
+                                    <h2 class="heading-secondary heading-secondary--2 mb--40"> TIPO DE ANIMALES PROTEGIDOS</h2>
+                                    <div class="skill-progress__single"><span class="skill-progress__title">Perros distintas razas</span>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"><span>35%</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-progress__single"><span class="skill-progress__title">Gatos distitas razas</span>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"><span>35%</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-progress__single"><span class="skill-progress__title">Aves y pajaritos </span>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"><span>20%</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-progress__single"><span class="skill-progress__title">Animales exoticos</span>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"><span>10%</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="img-box text-center"><img src="{% static 'core/image/others/about-us-sec-2.jpg' %}" alt="about image"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</main>    
+
+
+
+
+
+
+
+{% endblock %}
