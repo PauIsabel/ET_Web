@@ -1,0 +1,117 @@
+<!-- BLOQUE PADRE -->
+{% extends 'core/base_1.html' %}
+
+<!-- BLOQUE CARGA STATIC -->
+{% load static %}
+
+<!-- BLOQUE PARA CONTENIDO css -->
+{% block css%} 
+<link rel="stylesheet" href="{% static 'core/css/tracking.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+<!-- BLOQUE PARA CONTENIDO JS -->
+{% block js%} {% endblock %}
+
+{% block contenido %}
+<!--INICIO: TERCERA barra -->
+<nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-light p-3" id="ftco-navbar">
+    <div class="container mt-2 align-content-center">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa fa-bars"></span> Menu
+        </button>
+
+        <form action="#" class="searchform order-lg-last mt-3">
+            <div class="form-group d-flex">
+                <!-- <input type="text" class="form-control pl-3" placeholder="Search">
+                <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button> -->
+                <p class="mb-1">Llamanos ahora: <br><i class="icon ion-ios-telephone colorNaranja py-1 px-2 mx-2 text-light" width="25px"></i><span class="font-weight-mid pt-1">+569 1234 5478</span></p>
+            </div>
+        </form>
+
+        <div class="collapse navbar-collapse h5" id="ftco-nav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item mx-2"><a href="{% url 'index' %}" class="nav-link text-dark">Home</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'nosotros' %}" class="nav-link text-dark">Nosotros</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'galeria' %}" class="nav-link text-dark">Galeria</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'adopcion_mascota' %}" class="nav-link text-dark">Adopción</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'tiendafor' %}" class="nav-link text-dark">Tienda</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'contacto1' %}" class="nav-link text-dark">Contacto</a></li>
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--FIN: TERCERA barra -->
+
+<div class="container  px-md-4 py-1 mx-auto">
+    <div class="card mb-2 mt-2">
+        <div class="row d-flex justify-content-between px-3 top">
+            <div class="d-flex">
+                <h3>PEDIDO <span class="text-primary font-weight-bold">#6046056680</span></h3>
+            </div>
+            <div class="d-flex flex-column text-sm-right">
+                <p class="mb-0">Llegada prevista <span>25/07/2022</span></p>
+                <p>ChileExpress <span class="font-weight-bold">423422898</span></p>
+            </div>
+        </div>
+        <!-- Add class 'active' to progress -->
+        <div class="row d-flex justify-content-center">
+            <div class="col-12">
+            <ul id="progressbar" class="text-center">
+                <li class="active step0"></li>
+                <li class="active step0"></li>
+                <li class="active step0"></li>
+                <li class="step0"></li>
+            </ul>
+            </div>
+        </div>
+        <div class="row justify-content-between top">
+            <div class="row d-flex icon-content justify-content-center text-center">
+                <img class="icon" src="{% static 'core/image/tracking/9nnc9Et.png' %}">
+                <div class="d-flex flex-column">
+                    <p class="font-weight-bold">Pedido<br>Procesado</p>
+                </div>
+            </div>
+            <div class="row d-flex icon-content justify-content-center text-center">
+                <img class="icon" src="{% static 'core/image/tracking/u1AzR7w.png' %}">
+                <div class="d-flex flex-column">
+                    <p class="font-weight-bold">Pedido<br>Enviado</p>
+                </div>
+            </div>
+            <div class="row d-flex icon-content justify-content-center text-center">
+                <img class="icon" src="{% static 'core/image/tracking/TkPm63y.png' %}">
+                <div class="d-flex flex-column">
+                    <p class="font-weight-bold">Pedido<br>En ruta</p>
+                </div>
+            </div>
+            <div class="row d-flex icon-content justify-content-center text-center">
+                <img class="icon" src="{% static 'core/image/tracking/HdsziHP.png' %}">
+                <div class="d-flex flex-column">
+                    <p class="font-weight-bold">Pedido<br>Entregado</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-sm-12 col-12 text-center justify-content-center">
+                <a href="{% url 'mi_cuenta' %}">
+                    <button type="button" class="btn btn-success" >Volver</button>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+{% endblock %}
