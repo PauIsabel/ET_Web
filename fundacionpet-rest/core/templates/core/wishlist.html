@@ -1,0 +1,137 @@
+<!-- BLOQUE PADRE -->
+{% extends 'core/base_1.html' %}
+
+<!-- BLOQUE CARGA STATIC -->
+{% load static %}
+
+<!-- BLOQUE PARA CONTENIDO css -->
+{% block css%} {% endblock %}
+
+<!-- BLOQUE PARA CONTENIDO JS -->
+{% block js%} {% endblock %}
+<!-- BLOQUE CONTENIDO JS -->
+{% block contenido %} {% load humanize %}
+
+
+<nav aria-label="breadcrumb" class="breadcrumb-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb justify-content-center  h3 py-3">
+                    <!-- <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li> -->
+                    <li class="breadcrumb-item active" aria-current="page">LISTA DE DESEOS</li>
+                </ol>
+            </div>
+            <div class="col-sm-4">
+                <ol class="breadcrumb justify-content-center">
+                        <div><a href="{% url 'tiendafor' %}" class="btn colorNaranja text-light">Ir a la Tienda</a></div>
+                </ol>
+            </div>
+            <div class="col-sm-4">
+                <ol class="breadcrumb justify-content-center">
+                        <div><a href="{% url 'carro' %}" class="btn colorVerde text-light">Ir al Carro</a></div>
+                </ol>
+            </div>
+            <div class="col-sm-4">
+                <ol class="breadcrumb justify-content-center">
+                        <div><a href="{% url 'compare' %}" class="btn colorNaranja text-light">Ir al Comparador</a></div>
+                </ol>
+            </div>
+        </div>      
+    </div>
+</nav>
+
+
+<!-- Cart Page Start -->
+<div class="cart_area sp-inner-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <form action="./">
+                    <!-- Cart Table -->
+                    <div class="cart-table table-responsive">
+                        <div class=" text-black text-center">
+                            <h1>Lista de Deseos</h1>
+                        </div>
+                        <hr>
+
+                        <table class=" table">
+                            <thead>
+                                <tr>
+                                    <th class="pro-thumbnail">Imagen</th>
+                                    <th class="pro-title">Producto</th>
+                                    <th class="pro-price">Precio</th>
+                                    <th class="pro-quantity">Cantidad</th>
+                                    <th class="pro-quantity"></th>
+                                    <th class="pro-subtotal">Total</th>
+                                    <th class="pro-remove">Remover</th>
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+                                {% if request.session.wish.items %}
+                                <!--Primero un IF - Luego un FOR para recorrer el carro de compras-->
+                                {% for key, value in request.session.wish.items %}
+
+                                <tr>
+
+                                    <td class="pro-thumbnail">
+                                        <a href="#"><img src="{{value.imagen}}" alt="Product"></a>
+                                    </td>
+
+                                    <td class="pro-title"><a href="#">{{value.nombre | capfirst}}</a></td>
+                                    <td class="pro-price"><span>${{value.precio_oferta | intcomma }}</span></td>
+                                    <td class="pro-quantity">
+                                        <div class="pro-qty">
+                                            <div class="count-input-block">{{value.cantidad}}</div>
+                                        </div>
+                                    </td>
+                                    <td class="pro-quantity">
+                                        <div class="pro-qty">
+                                            <div class="count-input-block">
+                                                <a href="{% url 'agregarWMVC' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a>
+                                                <br>
+                                                <a href="{% url 'restarW' value.producto_id %}" class="badge btn btn-dark badge-dark">-</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="pro-subtotal"><span>${{value.precio_oferta | intcomma }}</span></td>
+                                    <td class="pro-remove"><a href="{% url 'eliminarW' value.producto_id %}"><i class="far fa-trash-alt"></i></a></td>
+                                </tr>
+                                {% endfor %} {% else %}
+                                <tr>
+                                    <td colspan="12">
+                                        <div class="alert alert-danger text-center"> No hay productos en su Lista de Deseos </div>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+
+                        </table>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-12 d-flex text-center justify-content-center">
+                    <a href="{% url 'limpiarW' %}" class="btn btn-danger">LIMPIAR</a>
+                </div>
+                <div class="col-sm-6 col-12 d-flex text-center justify-content-center">
+                    <a href="#" class="btn btn-success">COMPRAR</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Cart Page End -->
+
+
+
+
+
+{% endblock %}

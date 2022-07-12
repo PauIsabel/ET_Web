@@ -1,0 +1,267 @@
+<!-- BLOQUE PADRE -->
+{% extends 'core/base_1.html' %}
+
+<!-- BLOQUE CARGA STATIC -->
+{% load static %}
+
+<!-- BLOQUE PARA CONTENIDO css -->
+{% block css%} {% endblock %}
+
+<!-- BLOQUE PARA CONTENIDO JS -->
+{% block js%} {% if messages %} {% for m in messages %}
+<script>
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: '{{m}}',
+        showConfirmButton: false,
+        timer: 1500
+    })
+</script>
+{% endfor %} {% endif %} {% endblock %}
+<!--BLOQUE CONTENIDO -->
+{% block contenido %}
+<!--INICIO: TERCERA barra -->
+<nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-light p-3" id="ftco-navbar">
+    <div class="container mt-2 align-content-center">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa fa-bars"></span> Menu
+        </button>
+
+        <form action="#" class="searchform order-lg-last mt-3">
+            <div class="form-group d-flex">
+                <!-- <input type="text" class="form-control pl-3" placeholder="Search">
+                <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button> -->
+                <p class="mb-1">Llamanos ahora: <br><i class="icon ion-ios-telephone colorNaranja py-1 px-2 mx-2 text-light" width="25px"></i><span class="font-weight-mid pt-1">+569 1234 5478</span></p>
+            </div>
+        </form>
+
+        <div class="collapse navbar-collapse h5" id="ftco-nav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item mx-2"><a href="{% url 'index' %}" class="nav-link text-dark">Home</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'nosotros' %}" class="nav-link text-dark">Nosotros</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'galeria' %}" class="nav-link text-dark">Galeria</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'adopcion_mascota' %}" class="nav-link text-dark">Adopción</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'tiendafor' %}" class="nav-link text-dark">Tienda</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'contacto1' %}" class="nav-link text-dark">Contacto</a></li>
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--FIN: TERCERA barra -->
+
+<!-- INICIO: Banner -->
+<nav aria-label="breadcrumb" class="breadcrumb-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb justify-content-center  h3 py-3">
+                    <!-- <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li> -->
+                    <li class="breadcrumb-item active" aria-current="page">TIENDA</li>
+                </ol>
+            </div>
+            <div class="col-sm-4">
+                <ol class="breadcrumb justify-content-center">
+                        <div><a href="{% url 'carro' %}" class="btn colorNaranja text-light">Ir al Carro</a></div>
+                </ol>
+            </div>
+            <div class="col-sm-4">
+                <ol class="breadcrumb justify-content-center">
+                        <div><a href="{% url 'wishlist' %}" class="btn colorVerde text-light">Ir a Lista Deseos</a></div>
+                </ol>
+            </div>
+            <div class="col-sm-4">
+                <ol class="breadcrumb justify-content-center">
+                        <div><a href="{% url 'compare' %}" class="btn colorNaranja text-light">Ir al Comparador</a></div>
+                </ol>
+            </div>
+        </div>      
+    </div>
+</nav>
+<!-- FIN: Banner -->
+
+{% load humanize %}
+
+<!-- MODAL DEL PRODUCTO -->
+<!-- <div class="modal fade modal-quick-view" id="quickModal" tabindex="-1" role="dialog" aria-labelledby="quickModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        {% for p in productosTienda %}
+        <div class="modal-content">
+
+            <div class="pm-product-details">
+                <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                
+
+                <div class="row">
+                    
+                    <div class="col-md-6">
+                        {% if p.imagen %}
+                        <div class="image-block">
+                            
+                            <img id="zoom_03" src="{{ p.imagen.url }}" data-zoom-image="{{ p.imagen.url }}" alt="" />
+                            
+                            <div id="product-view-gallery" class="elevate-gallery">
+                                
+                                <a href="#" class="gallary-item" data-image="{{ p.imagen.url }}" data-zoom-image="{{ p.imagen.url }}">
+                                    <img src="{{ p.imagen.url }}" alt="" /></a>
+                                
+                                <a href="#" class="gallary-item" data-image="{{ p.imagen.url }}" data-zoom-image="{{ p.imagen.url }}">
+                                    <img src="{{ p.imagen.url }}" alt="" /></a>
+                                
+                                <a href="#" class="gallary-item" data-image="{{ p.imagen.url }}" data-zoom-image="{{ p.imagen.url }}">
+                                    <img src="{{ p.imagen.url }}" alt="" /></a>
+                                
+                                <a href="#" class="gallary-item" data-image="{{ p.imagen.url }}" data-zoom-image="{{ p.imagen.url }}">
+                                    <img src="{{ p.imagen.url }}" alt="" /></a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6 mt-4 mt-lg-0">
+                        <div class="description-block">
+                            <div class="header-block">
+                                <h3>{{p.nombre | title}}</h3>
+                            </div>
+                            
+                            <p class="price">
+                                <span class="old-price">${{p.precio_oferta | intcomma }}</span>${{p.precio | intcomma }}
+                            </p>
+                            
+                            <div class="rating-block d-flex mt--10 mb--15">
+                                <p class="rating-text"><a href="#comment-form">Ver todo</a></p>
+                            </div>
+                            
+                            <div class="product-short-para">
+                                <p>{{ p.descripcion }}</p>
+                            </div>
+                            <div class="status">
+                                <i class="fas fa-check-circle"></i>{{ p.stock }} EN STOCK
+                            </div>
+                            
+                            <form action="./" class="add-to-cart">
+                                <div class="count-input-block">
+                                    <input type="number" class="form-control text-center" value="1">
+                                </div>
+                                <div class="btn-block">
+                                    <a href="{% url 'Add' p.id %}"  class="btn btn-rounded btn-outlined--primary">Agregar al Carro</a>
+
+                                </div>
+                            </form>
+                            
+                            <div class="share-block-2 mt--30">
+                                <h4>COMPARTIR ESTE PRODUCTO</h4>
+                                <ul class="social-btns social-btns-3">
+                                    <li><a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#" class="twitter"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#" class="google"><i class="fab fa-google-plus-g"></i></a></li>
+                                    <li><a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a></li>
+                                    <li><a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+</div> -->
+
+
+<main class="section-padding shop-page-section">
+    <div class="container">
+        <div class="shop-toolbar mb--30">
+            <div class="row align-items-center">
+                <div class="col-5 col-md-3 col-lg-4">
+                    <!-- Product View Mode -->
+                    <div class="product-view-mode"><a href="#" class="sortting-btn active" data-target="list"><i class="fas fa-list"></i></a><a href="#" class="sortting-btn" data-target="grid"><i class="fas fa-th"></i></a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="shop-product-wrap grid with-pagination row border grid-four-column mr-0 ml-0 no-gutters">
+            {% for p in productosTienda %}
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="pm-product text-center">
+
+                    {% if p.imagen %}
+                    <a class="image" tabindex="0"><img src="{{ p.imagen.url }}" alt=""></a>
+                    {% endif %}
+
+                    <div class="hover-conents">
+                        <ul class="product-btns">
+                            <li><a href="{% url 'agregarW' p.id %}" tabindex="0"><i class="ion-ios-heart-outline"></i></a></li>
+                            <li><a href="{% url 'agregarC' p.id %}" tabindex="0"><i class="ion-ios-shuffle"></i></a></li>
+                            <!-- <li><a href="#" data-toggle="modal" data-target="#quickModal" tabindex="0"><i class="ion-ios-search"></i></a></li> -->
+                        </ul>
+                    </div>
+
+                    <div class="content">
+                        <h3 class="font-weight-500"><a href="#">{{p.nombre | title}}</a></h3>
+                        <h6 class="font-weight-500">
+                            <a href="#">{{p.marca | capfirst}}</a>
+                        </h6>
+                        <div class="price text-red"><span class="old">${{p.precio | intcomma }}</span><span>${{p.precio_oferta | intcomma }}</span>
+                        </div>
+                        <div class="btn-block grid-btn">
+                            <a href="{% url 'Add' p.id %}" class="btn btn-outlined btn-rounded btn-mid" tabindex="0">Agregar al Carro</a>
+                        </div>
+
+                        <div class="card-list-content">
+                            <div class="rating-widget mt--20">
+                                <a href="#" class="single-rating">
+                                    <i class="fas fa-star"></i>
+                                </a>
+                                <a href="#" class="single-rating">
+                                    <i class="fas fa-star"></i>
+                                </a>
+                                <a href="#" class="single-rating">
+                                    <i class="fas fa-star"></i>
+                                </a>
+
+                                <a href="#" class="single-rating"><i class="fas fa-star-half-alt"></i></a>
+                                <a href="#" class="single-rating"><i class="far fa-star"></i></a>
+                            </div>
+
+                            <article>
+                                <h3 class="d-none sr-only">{{p.nombre | capfirst}}</h3>
+                                <p>{{p.descripcion}}</p>
+                            </article>
+
+                            <div class="btn-block d-flex">
+                                <a href="{% url 'Add' p.id %}" class="btn btn-outlined btn-rounded btn-mid" tabindex="0">Agregar al Carro</a>
+
+                                <div class="btn-options">
+                                    <a href="{% url 'agregarW' p.id %}">
+                                        <i class="ion-ios-heart-outline"></i>Agregar a Lista Deseos
+                                    </a>
+                                    <a href="{% url 'agregarC' p.id %}"><i class="ion-ios-shuffle"></i>Agregar a Comparar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Importar el Paginador -->
+        <hr class="my-5">
+        <div>
+            {% include 'core/paginacion.html' %}
+        </div>
+
+
+
+
+    </div>
+
+</main>
+
+{% endblock %}

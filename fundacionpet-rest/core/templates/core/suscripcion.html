@@ -1,0 +1,67 @@
+{% extends 'core/base_1.html'%} {% load static %} {% block js %} {% endblock %} {% block css %} {% endblock %} {% block contenido %}
+<!--INICIO: TERCERA barra -->
+<nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-light p-3" id="ftco-navbar">
+    <div class="container mt-2 align-content-center">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa fa-bars"></span> Menu
+        </button>
+
+        <form action="#" class="searchform order-lg-last mt-3">
+            <div class="form-group d-flex">
+                <!-- <input type="text" class="form-control pl-3" placeholder="Search">
+                <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button> -->
+                <p class="mb-1">Llamanos ahora: <br><i class="icon ion-ios-telephone colorNaranja py-1 px-2 mx-2 text-light" width="25px"></i><span class="font-weight-mid pt-1">+569 1234 5478</span></p>
+            </div>
+        </form>
+
+        <div class="collapse navbar-collapse h5" id="ftco-nav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item mx-2"><a href="{% url 'index' %}" class="nav-link text-dark">Home</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'nosotros' %}" class="nav-link text-dark">Nosotros</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'galeria' %}" class="nav-link text-dark">Galeria</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'adopcion_mascota' %}" class="nav-link text-dark">Adopción</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'tiendafor' %}" class="nav-link text-dark">Tienda</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'contacto1' %}" class="nav-link text-dark">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--FIN: TERCERA barra -->
+
+
+
+<div class="container">
+    <div class="col-12 col-md-6 offset-md-3">
+        <h2 class="h1-responsive font-weight-bold text-center my-4">Suscripción a Fundación <br> Sin Fines de Lucro</h2>
+        <hr class="bg-dark">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-6 offset-md-3">
+
+        {% load crispy_forms_tags %}
+
+        <div class="card">
+            <div class="card-body">
+
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %} 
+                    {{ form | crispy }}
+
+                    <br>
+                    <div class="text-center mx-3 mb-5">
+                        <a href="{% url 'index' %}" class="btn colorNaranja text-light mx-2 my-2">Cancelar</a>
+                        <!-- <input type="reset" value="Cancelar" class="btn colorNaranja text-light mx-2 my-2"> -->
+                        <button type="submit" id="btnEnviar" class="button btn colorVerde text-light mx-2 my-2">Suscribir</button>
+                    </div>
+                </form>
+
+                {{ mensaje }}
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
