@@ -1,0 +1,244 @@
+<!-- BLOQUE PADRE -->
+{% extends 'core/base_1.html' %}
+
+<!-- BLOQUE CARGA STATIC -->
+{% load static %}
+
+<!-- BLOQUE PARA CONTENIDO css -->
+{% block css%}
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+{% endblock %}
+
+<!-- BLOQUE PARA CONTENIDO JS -->
+{% block js%}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" /> {% endblock %} {% block contenido %}
+<!--INICIO: TERCERA barra -->
+<nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-light p-3" id="ftco-navbar">
+    <div class="container mt-2 align-content-center">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa fa-bars"></span> Menu
+        </button>
+
+        <form action="#" class="searchform order-lg-last mt-3">
+            <div class="form-group d-flex">
+                <!-- <input type="text" class="form-control pl-3" placeholder="Search">
+                <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button> -->
+                <p class="mb-1">Llamanos ahora: <br><i class="icon ion-ios-telephone colorNaranja py-1 px-2 mx-2 text-light" width="25px"></i><span class="font-weight-mid pt-1">+569 1234 5478</span></p>
+            </div>
+        </form>
+
+        <div class="collapse navbar-collapse h5" id="ftco-nav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item mx-2"><a href="{% url 'index' %}" class="nav-link text-dark">Home</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'nosotros' %}" class="nav-link text-dark">Nosotros</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'galeria' %}" class="nav-link text-dark">Galeria</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'adopcion_mascota' %}" class="nav-link text-dark">Adopción</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'tiendafor' %}" class="nav-link text-dark">Tienda</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'contacto1' %}" class="nav-link text-dark">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--FIN: TERCERA barra -->
+
+<!-- INICIO: Banner -->
+<nav aria-label="breadcrumb" class="breadcrumb-wrapper">
+    <div class="container">
+        <ol class="breadcrumb justify-content-center h3">
+            <!-- <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li> -->
+            <li class="breadcrumb-item active" aria-current="page">GALERIA</li>
+        </ol>
+    </div>
+</nav>
+<!-- FIN: Banner -->
+
+
+<main id="content" class="main-content-wrapper overflow-hidden">
+    <!-- Comienza la Galeria -->
+    <h1 class="align-items-center text-center mt--30">¡Bienvenido a la Galeria de nuestra Fundación!</h1>
+    <div class="portfolio-area portfolio-blog-masonry">
+        <div class="pb--30">
+            <div class="text-center">
+                <div class="portfolio-filters messonry-button"><button data-filter="*" class="is-checked">Todos (22)</button><button data-filter=".filter-company" class="">perros (7)</button><button data-filter=".filter-computer">gatos (4)</button><button data-filter=".filter-general">General (8)</button>
+                    <button data-filter=".filter-hipster">Logros (12)</button><button data-filter=".filter-food">Alimentos (4)</button></div>
+            </div>
+        </div>
+        <div class="portfolio-wrapper mesonry-list row">
+            <div class="resizer"></div>
+            <div class=" portfolio-item portfolio-25 filter-company filter-computer">
+                <div class="portfolio">
+                    <a href="{% static 'core/image/others/fundacion/porfolio1.JPEG' %}"><img src="{% static 'core/image/others/fundacion/porfolio1.JPEG' %}"></a>
+                    <div class="portfolio__content">
+                        <div class="portfolio__icon">
+                            <a data-fancybox="gallery" href="{% static 'core/image/others/fundacion/porfolio1.JPEG' %}">
+                                <i class="fa fa-search"></i></a>
+                        </div>
+                        <h4 class="portfolio__title">Fundación &amp; Animales</h4>
+                    </div>
+                </div>
+            </div>
+            <div class=" portfolio-item portfolio-25 filter-general filter-food">
+                <div class="portfolio">
+                    <a href="{% static 'core/image/others/fundacion/porfolio2.png' %}"><img src="{% static 'core/image/others/fundacion/porfolio2.png' %}"></a>
+                    <div class="portfolio__content">
+                        <div class="portfolio__icon">
+                            <a data-fancybox="gallery" href="{% static 'core/image/others/fundacion/porfolio2.png' %}"><i class="fa fa-search"></i></a>
+                        </div>
+                        <h4 class="portfolio__title">Fundación &amp; Animales</h4>
+                    </div>
+                </div>
+            </div>
+            <div class=" portfolio-item portfolio-25 filter-hipster">
+                <div class="portfolio">
+                    <a href="{% static 'core/image/others/fundacion/porfolio3.jpg' %}"><img src="{% static 'core/image/others/fundacion/porfolio3.jpg' %}"></a>
+                    <div class="portfolio__content">
+                        <div class="portfolio__icon">
+                            <a data-fancybox="gallery" href="{% static 'core/image/others/fundacion/porfolio3.jpg' %}"><i class="fa fa-search"></i></a>
+                        </div>
+                        <h4 class="portfolio__title">Fundación &amp; Animales</h4>
+                    </div>
+                </div>
+            </div>
+            <div class=" portfolio-item portfolio-25 filter-computer filter-general">
+                <div class="portfolio">
+                    <a href="{% static 'core/image/others/fundacion/porfolio4.jpg' %}"><img src="{% static 'core/image/others/fundacion/porfolio4.jpg' %}"></a>
+                    <div class="portfolio__content">
+                        <div class="portfolio__icon">
+                            <a data-fancybox="gallery" href="{% static 'core/image/others/fundacion/porfolio4.jpg' %}"><i class="fa fa-search"></i></a>
+                        </div>
+                        <h4 class="portfolio__title">Fundación &amp; Animales</h4>
+                    </div>
+                </div>
+            </div>
+            <div class=" portfolio-item portfolio-25 filter-hipster filter-food">
+                <div class="portfolio">
+                    <a href="{% static 'core/image/others/fundacion/porfolio5.jpg' %}"><img src="{% static 'core/image/others/fundacion/porfolio5.jpg' %}"></a>
+                    <div class="portfolio__content">
+                        <div class="portfolio__icon">
+                            <a data-fancybox="gallery" href="{% static 'core/image/others/fundacion/porfolio5.jpg' %}"><i class="fa fa-search"></i></a>
+                        </div>
+                        <h4 class="portfolio__title">Fundación &amp; Animales</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class=" portfolio-item portfolio-25 filter-computer">
+                <div class="portfolio">
+                    <a href="{% static 'core/image/others/fundacion/porfolio6.jpg' %}"><img src="{% static 'core/image/others/fundacion/porfolio6.jpg' %}"></a>
+                    <div class="portfolio__content">
+                        <div class="portfolio__icon">
+                            <a data-fancybox="gallery" href="{% static 'core/image/others/fundacion/porfolio6.jpg' %}"><i class="fa fa-search"></i></a>
+                        </div>
+                        <h4 class="portfolio__title">Fundación &amp; Animales</h4>
+                    </div>
+                </div>
+            </div>
+            <div class=" portfolio-item portfolio-25 filter-company filter-computer">
+                <div class="portfolio">
+                    <a href="{% static 'core/image/others/fundacion/porfolio7.jpg' %}"><img src="{% static 'core/image/others/fundacion/porfolio7.jpg' %}"></a>
+                    <div class="portfolio__content">
+                        <div class="portfolio__icon">
+                            <a data-fancybox="gallery" href="{% static 'core/image/others/fundacion/porfolio7.jpg' %}"><i class="fa fa-search"></i></a>
+                        </div>
+                        <h4 class="portfolio__title">Fundación &amp; Animales</h4>
+                    </div>
+                </div>
+            </div>
+            <div class=" portfolio-item portfolio-25 filter-computer">
+                <div class="portfolio">
+                    <a href="{% static 'core/image/others/fundacion/porfolio8.jpg' %}"><img src="{% static 'core/image/others/fundacion/porfolio8.jpg' %}"></a>
+                    <div class="portfolio__content">
+                        <div class="portfolio__icon">
+                            <a data-fancybox="gallery" href="{% static 'core/image/others/fundacion/porfolio8.jpg' %}"><i class="fa fa-search"></i></a>
+                        </div>
+                        <h4 class="portfolio__title">Fundación &amp; Animales</h4>
+                    </div>
+                </div>
+            </div>
+            <div class=" portfolio-item portfolio-25 filter-general filter-hipster">
+                <div class="portfolio">
+                    <a href="{% static 'core/image/others/fundacion/porfolio9.jpg' %}"><img src="{% static 'core/image/others/fundacion/porfolio9.jpg' %}"></a>
+                    <div class="portfolio__content">
+                        <div class="portfolio__icon">
+                            <a data-fancybox="gallery" href="{% static 'core/image/others/fundacion/porfolio9.jpg' %}"><i class="fa fa-search"></i></a>
+                        </div>
+                        <h4 class="portfolio__title">Fundación &amp; Animales</h4>
+                    </div>
+                </div>
+            </div>
+            <div class=" portfolio-item portfolio-25 filter-computer filter-food">
+                <div class="portfolio">
+                    <a href="{% static 'core/image/others/fundacion/porfolio10.jpg' %}"><img src="{% static 'core/image/others/fundacion/porfolio10.jpg' %}"></a>
+                    <div class="portfolio__content">
+                        <div class="portfolio__icon">
+                            <a data-fancybox="gallery" href="{% static 'core/image/others/fundacion/porfolio10.jpg' %}"><i class="fa fa-search"></i></a>
+                        </div>
+                        <h4 class="portfolio__title">Fundación &amp; Animales</h4>
+                    </div>
+                </div>
+            </div>
+            <div class=" portfolio-item portfolio-25 filter-company filter-general">
+                <div class="portfolio">
+                    <a href="{% static 'core/image/others/fundacion/porfolio11.jpg' %}"><img src="{% static 'core/image/others/fundacion/porfolio11.jpg' %}"></a>
+                    <div class="portfolio__content">
+                        <div class="portfolio__icon">
+                            <a data-fancybox="gallery" href="{% static 'core/image/others/fundacion/porfolio11.jpg' %}"><i class="fa fa-search"></i></a>
+                        </div>
+                        <h4 class="portfolio__title">Fundación &amp; Animales</h4>
+                    </div>
+                </div>
+            </div>
+            <div class=" portfolio-item portfolio-25 filter-food">
+                <div class="portfolio">
+                    <a href="{% static 'core/image/others/fundacion/porfolio12.jpg' %}"><img src="{% static 'core/image/others/fundacion/porfolio12.jpg' %}"></a>
+                    <div class="portfolio__content">
+                        <div class="portfolio__icon">
+                            <a data-fancybox="gallery" href="{% static 'core/image/others/fundacion/porfolio12.jpg' %}"><i class="fa fa-search"></i></a>
+                        </div>
+                        <h4 class="portfolio__title">Fundación &amp; Animales</h4>
+                    </div>
+                </div>
+            </div>
+            <div class=" portfolio-item portfolio-25 filter-company">
+                <div class="portfolio">
+                    <a href="{% static 'core/image/others/fundacion/porfolio13.jpg' %}"><img src="{% static 'core/image/others/fundacion/porfolio13.jpg' %}"></a>
+                    <div class="portfolio__content">
+                        <div class="portfolio__icon">
+                            <a data-fancybox="gallery" href="{% static 'core/image/others/fundacion/porfolio13.jpg' %}"><i class="fa fa-search"></i></a>
+                        </div>
+                        <h4 class="portfolio__title">Fundación &amp; Animales</h4>
+                    </div>
+                </div>
+            </div>
+            <div class=" portfolio-item portfolio-25 filter-food">
+                <div class="portfolio">
+                    <a href="{% static 'core/image/others/fundacion/porfolio14.jpg' %}"><img src="{% static 'core/image/others/fundacion/porfolio14.jpg' %}"></a>
+                    <div class="portfolio__content">
+                        <div class="portfolio__icon">
+                            <a data-fancybox="gallery" href="{% static 'core/image/others/fundacion/porfolio14.jpg' %}"><i class="fa fa-search"></i></a>
+                        </div>
+                        <h4 class="portfolio__title">Fundación &amp; Animales</h4>
+                    </div>
+                </div>
+            </div>
+            <div class=" portfolio-item portfolio-25 filter-computer">
+                <div class="portfolio">
+                    <a href="{% static 'core/image/others/fundacion/porfolio9.jpg' %}"><img src="{% static 'core/image/others/fundacion/porfolio9.jpg' %}"></a>
+                    <div class="portfolio__content">
+                        <div class="portfolio__icon">
+                            <a data-fancybox="gallery" href="{% static 'core/image/others/fundacion/porfolio9.jpg' %}"><i class="fa fa-search"></i></a>
+                        </div>
+                        <h4 class="portfolio__title">Fundación &amp; Animales</h4>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- 
+        <div class="portfolio-btn-group text-center"><a href="#" class="btn btn-portfolio">Cargar más (2)</a></div>
+        -->
+    </div>
+    <!-- Fin de la Galeria-->
+</main>
+{% endblock %}
