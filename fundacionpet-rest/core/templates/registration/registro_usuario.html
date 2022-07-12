@@ -1,0 +1,80 @@
+<!-- BLOQUE PADRE -->
+{% extends 'core/base_1.html' %}
+<!-- BLOQUE CARGA STATIC -->
+{% load static %}
+
+<!-- BLOQUE PARA CONTENIDO css -->
+{% block css%} {% endblock %}
+
+<!-- BLOQUE PARA CONTENIDO JS -->
+{% block js%} {% endblock %}
+
+{% block contenido %}
+{% load crispy_forms_tags %}
+<!--INICIO: TERCERA barra -->
+<nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-light p-3" id="ftco-navbar">
+    <div class="container mt-2 align-content-center">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa fa-bars"></span> Menu
+        </button>
+
+        <form action="#" class="searchform order-lg-last mt-3">
+            <div class="form-group d-flex">
+                <!-- <input type="text" class="form-control pl-3" placeholder="Search">
+                <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button> -->
+                <p class="mb-1">Llamanos ahora: <br><i class="icon ion-ios-telephone colorNaranja py-1 px-2 mx-2 text-light" width="25px"></i><span class="font-weight-mid pt-1">+569 1234 5478</span></p>
+            </div>
+        </form>
+        
+        <div class="collapse navbar-collapse h5" id="ftco-nav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item mx-2"><a href="{% url 'index' %}" class="nav-link text-dark">Home</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'nosotros' %}" class="nav-link text-dark">Nosotros</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'galeria' %}" class="nav-link text-dark">Galeria</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'adopcion_mascota' %}" class="nav-link text-dark">Adopción</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'tiendafor' %}" class="nav-link text-dark">Tienda</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'contacto1' %}" class="nav-link text-dark">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--FIN: TERCERA barra -->
+
+<!-- INICIO: Banner -->
+<nav aria-label="breadcrumb" class="breadcrumb-wrapper">
+    <div class="container">
+        <ol class="breadcrumb justify-content-center h3">
+            <!-- <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li> -->
+            <li class="breadcrumb-item active aria-current="page">REGISTRO</li>
+        </ol>
+    </div>
+</nav>
+<!-- FIN: Banner -->
+
+
+<div class="container my-5 py-2 px-2">
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2">
+
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center">Registro de usuario</h2>
+                    <hr>
+                    <form action="" method="post">
+
+                        {% csrf_token %}
+                        {{ form | crispy }}
+
+                        <a href="{% url 'index' %}" class="font-weight-bold">Ir al Home</a> | 
+                        <a href="{% url 'login' %}" class="font-weight-bold">Iniciar sesión</a>
+                        <input type="submit" class="btn colorVerde text-light font-weight-bold my-2 float-right" value="Registrar">
+                        
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
