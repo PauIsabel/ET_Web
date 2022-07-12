@@ -1,0 +1,100 @@
+<!-- BLOQUE PADRE -->
+{% extends 'core/base_1.html' %}
+
+<!-- BLOQUE CARGA STATIC -->
+{% load static %}
+
+<!-- BLOQUE PARA CONTENIDO css -->
+{% block css%} {% endblock %}
+
+<!-- BLOQUE PARA CONTENIDO JS -->
+{% block js%} {% endblock %} {% block contenido %} {% load crispy_forms_tags %}
+<!--INICIO: TERCERA barra -->
+<nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-light p-3" id="ftco-navbar">
+    <div class="container mt-2 align-content-center">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa fa-bars"></span> Menu
+        </button>
+
+        <form action="#" class="searchform order-lg-last mt-3">
+            <div class="form-group d-flex">
+                <!-- <input type="text" class="form-control pl-3" placeholder="Search">
+                <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button> -->
+                <p class="mb-1">Llamanos ahora: <br><i class="icon ion-ios-telephone colorNaranja py-1 px-2 mx-2 text-light" width="25px"></i><span class="font-weight-mid pt-1">+569 1234 5478</span></p>
+            </div>
+        </form>
+
+        <div class="collapse navbar-collapse h5" id="ftco-nav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item mx-2"><a href="{% url 'index' %}" class="nav-link text-dark">Home</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'nosotros' %}" class="nav-link text-dark">Nosotros</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'galeria' %}" class="nav-link text-dark">Galeria</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'adopcion_mascota' %}" class="nav-link text-dark">Adopción</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'tiendafor' %}" class="nav-link text-dark">Tienda</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'contacto1' %}" class="nav-link text-dark">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--FIN: TERCERA barra -->
+
+<!-- INICIO: Banner -->
+<nav aria-label="breadcrumb" class="breadcrumb-wrapper">
+    <div class="container">
+        <ol class="breadcrumb justify-content-center h3">
+            <!-- <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li> -->
+            <li class="breadcrumb-item active" aria-current="page">CONTACTO</li>
+        </ol>
+    </div>
+</nav>
+<!-- FIN: Banner -->
+
+
+<div class="container py-2 px-2 mt-3">
+    <div class="col-12 col-md-6 offset-md-3">
+        <h2 class="h1-responsive font-weight-bold text-center my-4">Contáctanos!</h2>
+        <hr class="bg-dark">
+        <p class="text-center w-responsive mx-auto mb-5">
+            ¿Tienes alguna pregunta? 
+            <br>
+            Por favor, no dude en ponerse en contacto con nosotros directamente. 
+            Nuestro equipo se pondrá en contacto con usted en cuestión de horas para ayudarle.
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <form action="" method="post">
+                        
+                        {% csrf_token %}
+                        {{ form | crispy}}
+        
+                        <br>
+                        <div class="text-center mx-3 mb-5">
+                            <a href="{% url 'index' %}" class="btn colorNaranja text-light mx-2 my-2">Cancelar</a>
+                            <!-- <input type="reset" value="Cancelar" class="btn colorNaranja text-light mx-2 my-2"> -->
+                            <button type="submit" id="btnEnviar" class="button btn colorVerde text-light mx-2 my-2">Enviar</button>
+                        </div>                        
+                    </form> 
+                    {{ mensaje }}
+                </div>
+            </div> 
+        </div>
+        <hr>
+        <div class="col-12 col-md-8 offset-md-2 pb--20">
+            <div class="map">
+                <div class="map-iframe text-center">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2489.2687449301775!2d-70.58235825754302!3d-33.61113921461324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662d713c9048abd%3A0x15841ec1844619ea!2sHospital%20Veterinario%20Fundaci%C3%B3n%20Comprometidos!5e0!3m2!1ses!2scl!4v1657563810918!5m2!1ses!2scl" width="700" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+            </div>
+
+        </div>
+        
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,186 @@
+{% extends 'core/base_1.html' %} {% load static %}
+
+<!-- BLOQUE PARA CONTENIDO css -->
+{% block css%}
+{% endblock %}
+
+<!-- BLOQUE PARA CONTENIDO JS -->
+{% block js%}
+
+{% endblock %} {% block contenido %}
+<!--INICIO: TERCERA barra -->
+<nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-light p-3" id="ftco-navbar">
+    <div class="container mt-2 align-content-center">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa fa-bars"></span> Menu
+        </button>
+
+        <form action="#" class="searchform order-lg-last mt-3">
+            <div class="form-group d-flex">
+                <!-- <input type="text" class="form-control pl-3" placeholder="Search">
+                <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button> -->
+                <p class="mb-1">Llamanos ahora: <br><i class="icon ion-ios-telephone colorNaranja py-1 px-2 mx-2 text-light" width="25px"></i><span class="font-weight-mid pt-1">+569 1234 5478</span></p>
+            </div>
+        </form>
+
+        <div class="collapse navbar-collapse h5" id="ftco-nav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item mx-2"><a href="{% url 'index' %}" class="nav-link text-dark">Home</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'nosotros' %}" class="nav-link text-dark">Nosotros</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'galeria' %}" class="nav-link text-dark">Galeria</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'adopcion_mascota' %}" class="nav-link text-dark">Adopción</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'tiendafor' %}" class="nav-link text-dark">Tienda</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'contacto1' %}" class="nav-link text-dark">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--FIN: TERCERA barra -->
+
+
+<!-- INICIO Slider  -->
+<section class="home-slider-3 mt-4">
+    <div class="container">
+        <div class=" petmark-slick-slider  home-slider" data-slick-setting='{"autoplay": true,"autoplaySpeed": 8000,"slidesToShow": 1,"dots": true}'>
+            <div class="single-slider home-content bg-image" data-bg="{% static 'core/image/bg-images/home-3/slider-3.jpg' %}">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Consulta el Clima <br>Con API Externa</h1>
+                        <div class="slider-btn mt--30"><a href="{% url 'api_clima' %}" class="btn btn-outlined--orange btn-rounded">Consultar</a></div>
+                    </div>
+                </div><span class="herobanner-progress"></span>
+            </div>
+
+            <div class="single-slider home-content bg-image" data-bg="{% static 'core/image/bg-images/home-3/slider-1.png' %}">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>No es solo <br>Un plato para<br>Mascotas Promedio</h2>
+                        <div class="slider-btn mt--30"><a href="{% url 'tiendafor' %}" class="btn btn-outlined--orange btn-rounded">Compra ahora</a></div>
+                    </div>
+                </div><span class="herobanner-progress"></span>
+            </div>
+            
+                <div class="single-slider home-content bg-image" data-bg="{% static 'core/image/bg-images/home-3/slider-2.jpg' %}">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Platos para Gatos & <br>Fuentes para gatos</h2>
+                        <h4 class="mt--20">Compre en línea suministros de alimentación y agua para gatos</h4>
+                        <div class="slider-btn mt--30"><a href="{% url 'tiendafor' %}" class="btn btn-outlined--orange btn-rounded">Compra ahora</a></div>
+                    </div>
+                </div><span class="herobanner-progress"></span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- FIN Slider -->
+
+
+<!-- COMIENZA MENU INDEX -->
+<div class="container pt-3 pb-3">
+    <main id="content" class="main-content-wrapper overflow-hidden">
+        <div class="about-area">
+            <div class="container-fluid p-0">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-lg-6">
+                        <div class="img-box text-center"><img src="{% static 'core/image/others/about-us-sec-1.jpg' %}" alt="about"></div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-10 offset-1">
+                                <div class="about-text text-center">
+                                    <h2 class="heading-secondary"><strong>NUESTRA FUNDACIÓN AYUDA</strong></h2>
+                                    <p class="mb--40 mb-sm--30">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
+                                        delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam,
+                                        est usus legentis in iis qui facit eorum claritatem.</p>
+                                    <div class="about-btn"><a href="{% url 'galeria' %}" class="btn btn-outlined--black">Ver actividades</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fact-area">
+            <div class="container-fluid p-0">
+                <div class="row no-gutters">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="fact">
+                            <div class="fact__icon"><img src="{% static 'core/image/icon-logo/about-us-icon1.png' %}" alt="about icon"></div>
+                            <div class="fact__content">
+                                <h3><span class="counter">1700</span></h3>
+                                <p>ANIMALES AYUDADOS</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="fact">
+                            <div class="fact__icon"><img src="{% static 'core/image/icon-logo/about-us-icon2.png' %}" alt="about icon"></div>
+                            <div class="fact__content">
+                                <h3><span class="counter">480</span></h3>
+                                <p>DONACIONES RECIBIDAS</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="fact">
+                            <div class="fact__icon"><img src="{% static 'core/image/icon-logo/about-us-icon3.png' %}" alt="about icon"></div>
+                            <div class="fact__content">
+                                <h3><span class="counter">689</span></h3>
+                                <p>HORAS DE TRABAJO</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="fact">
+                            <div class="fact__icon"><img src="{% static 'core/image/icon-logo/about-us-icon4.png' %}" alt="about icon"></div>
+                            <div class="fact__content">
+                                <h3><span class="counter">1630</span></h3>
+                                <p>ANIMALES RESCATADOS</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="skill-area bg--white">
+            <div class="container-fluid p-0">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-xl-6">
+                        <div class="row">
+                            <div class="col-sm-9 offset-sm-2 col-10 offset-1">
+                                <div class="skill-progress">
+                                    <h2 class="heading-secondary heading-secondary--2 mb--40"> TIPO DE ANIMALES PROTEGIDOS</h2>
+                                    <div class="skill-progress__single"><span class="skill-progress__title">Perros distintas razas</span>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"><span>35%</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-progress__single"><span class="skill-progress__title">Gatos distitas razas</span>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"><span>35%</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-progress__single"><span class="skill-progress__title">Aves y pajaritos </span>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"><span>20%</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="skill-progress__single"><span class="skill-progress__title">Animales exoticos</span>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"><span>10%</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="img-box text-center"><img src="{% static 'core/image/others/about-us-sec-2.jpg' %}" alt="about image"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>
+{% endblock %}
