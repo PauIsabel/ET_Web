@@ -1,0 +1,6 @@
+Inicie SQLPLUS con su usuario y contraseña e ingrese la siguiente configuración:
+
+alter session set "_ORACLE_SCRIPT" = True;
+create user c##grupo3 identified by grupo3;
+grant connect, resource to c##grupo3;
+alter user c##grupo3 default tablespace users quota unlimited on users;
