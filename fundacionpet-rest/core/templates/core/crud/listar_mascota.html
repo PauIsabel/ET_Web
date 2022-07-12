@@ -1,0 +1,124 @@
+{% extends 'core/base_1.html'%} {% load static %} {% block css %} {% endblock %} {% block js %}
+<script>
+    function eliminarProducto(id) {
+        Swal.fire({
+                "title": "¿Estas segur@?",
+                "text": "Esta acción no se puede deshacer",
+                "icon": "question",
+                "showCancelButton": true,
+                "cancelButtonText": "No, Cancelar",
+                "confirmButtonText": "Si, Eliminar",
+                "reverseButtons": true,
+                "confirmButtonColor": "#dc3545"
+            })
+            .then(function(result) {
+                if (result.isConfirmed) {
+                    window.location.href = "/eliminar_mascota/" + id + "/"
+                }
+            })
+
+    }
+</script>
+{% endblock %} {% load humanize %} {% block contenido %}
+<!--INICIO: TERCERA barra -->
+<nav class="navbar navbar-expand-lg navbar-light ftco_navbar bg-light ftco-navbar-light p-3" id="ftco-navbar">
+    <div class="container mt-2 align-content-center">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa fa-bars"></span> Menu
+        </button>
+
+        <form action="#" class="searchform order-lg-last mt-3">
+            <div class="form-group d-flex">
+                <!-- <input type="text" class="form-control pl-3" placeholder="Search">
+                <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button> -->
+                <p class="mb-1">Llamanos ahora: <br><i class="icon ion-ios-telephone colorNaranja py-1 px-2 mx-2 text-light" width="25px"></i><span class="font-weight-mid pt-1">+569 1234 5478</span></p>
+            </div>
+        </form>
+
+        <div class="collapse navbar-collapse h5" id="ftco-nav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item mx-2"><a href="{% url 'index' %}" class="nav-link text-dark">Home</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'nosotros' %}" class="nav-link text-dark">Nosotros</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'galeria' %}" class="nav-link text-dark">Galeria</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'adopcion_mascota' %}" class="nav-link text-dark">Adopción</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'tiendafor' %}" class="nav-link text-dark">Tienda</a></li>
+                <li class="nav-item mx-2"><a href="{% url 'contacto1' %}" class="nav-link text-dark">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--FIN: TERCERA barra -->
+
+<!-- INICIO: Banner -->
+<nav aria-label="breadcrumb" class="breadcrumb-wrapper">
+    <div class="container">
+        <ol class="breadcrumb pt-4">
+            <li class="breadcrumb-item h5"><strong><a href="{% url 'mi_cuenta_CRUD' %}">< Volver al menú</a></strong></li>
+        </ol>
+    </div>
+</nav>
+<!-- FIN: Banner -->
+
+
+<div class="container my-5">
+    <div class="col-12 col-md-8 offset-md-2 my-5">
+        <h2 class="h1-responsive font-weight-bold text-center my-4">Listado de Mascotas en Adopción</h2>
+        <hr class="bg-dark">
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-12 ">
+
+            <table class="table table-responsive-lg mb-5">
+                <thead class="text-justify colorGris text-light">
+                    <tr>
+                        <th>Mascota</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Tamaño</th>
+                        <th>Sexo</th>
+                        <th>Edad</th>
+                        <th class="text-center">N° Microchip</th>
+                        <th class="text-center">¿Vacunado?</th>
+                        <th class="text-center">Opciones</th>
+                    </tr>
+                </thead>
+
+                {% for pro in mascotaAdopcion %}
+                <tbody>
+                    <tr>
+                        {% if pro.imagen %}
+                        <td><img src="{{ pro.imagen.url }}" alt="Imagen producto" class="text-center"></td>
+                        {% endif %}
+                        <td>{{ pro.nombre | title }}</td>
+                        <td>{{ pro.descripcion | title }}</td>
+                        <td>{% if pro.tamanio == 0 %} Pequeño {% elif pro.tamanio == 1 %} Mediano {% else %} Grande {% endif %}</td>
+                        <td>{% if pro.sexo == 0 %} Macho  {% else %} Hembra {% endif %}</td>
+                        <td class="text-center">{{ pro.edad }}</td>
+                        <td class="text-center">{{ pro.microchip }}</td>
+                        <td class="text-center">
+                            {% if pro.vacunado %} Si {% else %} No {% endif %}
+                        </td>
+                        <td class="text-center">
+                            {% if perms.fundacionpet.change_adopcion %}
+                            <a href="{% url 'modificar_mascota' pro.id %}" class="btn colorVerde text-light m-1">Modificar</a>
+                            {% endif %}
+                            {% if perms.fundacionpet.delete_adopcion %}
+                            <a href="#" onclick="eliminarProducto({{ pro.id }})" class="btn colorNaranja text-light m-1">Eliminar</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+
+            <!-- Importar el Paginador -->
+            <hr class="my-5">
+            <div>
+                {% include 'core/paginacion.html' %}
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
